@@ -6,6 +6,11 @@
 trigger:
 - master
 
+variables:
+  major: 0
+  minor: 0
+name: $(major).$(minor)$(Rev:.r)
+
 pool:
   vmImage: ubuntu-latest
 
