@@ -23,6 +23,11 @@ stages:
 
           steps:
             - script: |
+                git config --global user.email "cggaldes@gmail.com"
+                git config --global user.name "Christopher Galdes"
+              displayName: setup git
+              
+            - script: |
                 echo "Hello There :wave"
               displayName: git tag for ${{ service.applicationServiceID }}
 
