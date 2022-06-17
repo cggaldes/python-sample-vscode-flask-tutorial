@@ -9,6 +9,7 @@ trigger:
 variables:
   major: 0
   minor: 0
+  patch: 1
 name: $(major).$(minor)$(Rev:.r)
 
 pool:
@@ -54,7 +55,7 @@ parameters:
       - applicationServiceID: mcp-gke-internal-sandpit-blue
         workspace: mcp-gke-internal-sandpit-blue
         stack: gke
-        releaseVersion: $(major).$(minor)
+        releaseVersion: $(Build.BuildNumber)
         deploymentSteps:
         - tag
         approvalEnvName: mcp-sandpit
