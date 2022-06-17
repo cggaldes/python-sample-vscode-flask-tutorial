@@ -29,7 +29,7 @@ stages:
               
             - script: |
                 echo "Hello There :wave"
-              displayName: git tag for ${{ service.applicationServiceID }}
+              displayName: smile and wave
 
             - script: |
                 git tag ${{ service.releaseVersion }}
