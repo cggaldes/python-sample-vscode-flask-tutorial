@@ -55,7 +55,7 @@ parameters:
       - applicationServiceID: mcp-gke-internal-sandpit-blue
         workspace: mcp-gke-internal-sandpit-blue
         stack: gke
-        releaseVersion: $(Build.BuildNumber)
+        releaseVersion: $(Build.BuildNumber).blue
         deploymentSteps:
         - tag
         approvalEnvName: mcp-sandpit
@@ -63,7 +63,7 @@ parameters:
       - applicationServiceID: mcp-gke-internal-sandpit-green
         workspace: mcp-gke-internal-sandpit-green
         stack: gke
-        releaseVersion: $(major).$(minor)$(Rev:.r)
+        releaseVersion: $(Build.BuildNumber).green
         deploymentSteps:
         - tag
         approvalEnvName: mcp-sandpit
