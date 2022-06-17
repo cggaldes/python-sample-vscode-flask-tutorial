@@ -14,26 +14,64 @@ name: $(major).$(minor)$(Rev:.r)
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.7'
-  displayName: 'Use Python 3.7'
+#################################################
+# Simple Build Steps
+#################################################
+# steps:
+# - task: UsePythonVersion@0
+#   inputs:
+#     versionSpec: '3.7'
+#   displayName: 'Use Python 3.7'
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
+# - script: |
+#     python -m pip install --upgrade pip
+#     pip install -r requirements.txt
+#   displayName: 'Install dependencies'
 
-- script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+# - script: |
+#     pip install pytest pytest-azurepipelines
+#     pytest
+#   displayName: 'pytest'
 
 # trigger:
 # - master
 
+#################################################
+# Simple template extension
+#################################################
 # extends:
 #   template: simple-param.yml
 #   parameters:
 #       yesNo: false # set to a non-boolean value to have the build fail
+
+#################################################
+# Parameters
+#################################################
+parameters:
+  - name: appServices
+    type: object
+    default:      
+      - applicationServiceID: mcp-gke-internal-sandpit-blue
+        workspace: mcp-gke-internal-sandpit-blue
+        stack: gke
+        releaseVersion: $(major).$(minor)$(Rev:.r)
+        deploymentSteps:
+        - tag
+        approvalEnvName: mcp-sandpit
+
+      - applicationServiceID: mcp-gke-internal-sandpit-green
+        workspace: mcp-gke-internal-sandpit-green
+        stack: gke
+        releaseVersion: $(major).$(minor)$(Rev:.r)
+        deploymentSteps:
+        - tag
+        approvalEnvName: mcp-sandpit
+
+#################################################
+# Job Definition
+#################################################
+extends:
+  template: blueprint.yaml
+  parameters:
+    appServices:  ${{ parameters.appServices }}
+    
