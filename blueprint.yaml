@@ -25,6 +25,9 @@ stages:
             - checkout: self
               persistCredentials: true
               
+            - script: echo '$(Build.BuildNumber)'
+              displayName: Output Some build number  
+
             - script: |
                 git config --global user.email "cggaldes@gmail.com"
                 git config --global user.name "Christopher Galdes"
