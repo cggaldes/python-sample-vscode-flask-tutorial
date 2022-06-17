@@ -28,6 +28,9 @@ stages:
             - script: echo '$(Build.BuildNumber)'
               displayName: Output Some build number  
 
+            - script: echo '$(Rev:r)'
+              displayName: Rev rrrrrrr
+
             - script: |
                 git config --global user.email "cggaldes@gmail.com"
                 git config --global user.name "Christopher Galdes"

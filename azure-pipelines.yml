@@ -9,8 +9,8 @@ trigger:
 variables:
   major: 0
   minor: 0
-  patch: 1
-name: $(major).$(minor)$(Rev:.r)
+  patch: 20
+# name: $(major).$(minor)$(Rev:.r)
 
 pool:
   vmImage: ubuntu-latest
@@ -55,7 +55,7 @@ parameters:
       - applicationServiceID: mcp-gke-internal-sandpit-blue
         workspace: mcp-gke-internal-sandpit-blue
         stack: gke
-        releaseVersion: $(Rev:r)
+        releaseVersion: $(Build.BuildNumber)
         deploymentSteps:
         - tag
         approvalEnvName: mcp-sandpit
