@@ -16,7 +16,7 @@ stages:
     jobs:
       - ${{ each service in parameters.appServices }}:
         - job: SAY_HELLO_${{ upper(service.applictionServiceID) }}
-          displayName: Say Hello
+          displayName: Say Hello ${{ upper(service.applictionServiceID) }}
 
           #variables:
           #  - releaseVersion: 0.0.1
@@ -28,8 +28,8 @@ stages:
             - script: echo '$(Build.BuildNumber)'
               displayName: Output Some build number  
 
-            - script: echo '$(Rev:r)'
-              displayName: Rev rrrrrrr
+            # - script: echo '$(Rev:r)'
+            #   displayName: Rev rrrrrrr
 
             - script: |
                 git config --global user.email "cggaldes@gmail.com"
