@@ -60,13 +60,13 @@ parameters:
         - tag
         approvalEnvName: mcp-sandpit
 
-#       - applicationServiceID: mcp-gke-internal-sandpit-green
-#         workspace: mcp-gke-internal-sandpit-green
-#         stack: gke
-#         releaseVersion: $(major).$(minor)$(Rev:.r)
-#         deploymentSteps:
-#         - tag
-#         approvalEnvName: mcp-sandpit
+      - applicationServiceID: mcp-gke-internal-sandpit-green
+        workspace: mcp-gke-internal-sandpit-green
+        stack: gke
+        releaseVersion: $(major).$(minor)$(Rev:.r)
+        deploymentSteps:
+        - tag
+        approvalEnvName: mcp-sandpit
 
 #################################################
 # Job Definition
