@@ -15,7 +15,7 @@ stages:
     displayName: Create a git tag for this version
     jobs:
       - ${{ each service in parameters.appServices }}:
-        - job: SAY_HELLO
+        - job: SAY_HELLO_${{ upper(service.applictionServiceID) }}
           displayName: Say Hello
 
           #variables:
