@@ -1,0 +1,34 @@
+###########################################################
+# Parameters
+###########################################################
+
+parameters:
+  - name: appServices
+    type: object
+
+###########################################################
+# Steps
+###########################################################
+stages:
+
+  - stage: 'GIT_TAG'
+    displayName: Create a git tag for this version
+    jobs:
+      - ${{ each service in parameters.appServices }}:
+        - job: SAY_HELLO
+          displayName: Say Hello
+
+          #variables:
+          #  - releaseVersion: 0.0.1
+
+          steps:
+            step:
+              - script: |
+                  echo "Hello There :wave"
+                displayName: git tag for ${{ service.applicationServiceID }}
+
+            step:
+              - script: |
+                  git tag ${{ service.releaseVersion }}
+                  git push origin ${{ service.releaseVersion }}
+                displayName: git tag for ${{ service.applicationServiceID }}
