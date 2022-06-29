@@ -14,8 +14,8 @@ parameters:
 stages:
 - stage: deploy
   jobs:
-  - deployment: DeploySomething
-    displayName: deploy something
+  - deployment: DeploySomething1
+    displayName: deploy something 1
     # creates an environment if it doesn't exist
     environment: 'development'
     strategy:
@@ -23,8 +23,8 @@ stages:
         deploy:
           steps:
           - script: echo something
-  - deployment: DeploySomething
-    displayName: deploy something
+  - deployment: DeploySomething2
+    displayName: deploy something 2
     # creates an environment if it doesn't exist
     environment: 'sandpit'
     strategy:
