@@ -12,11 +12,31 @@ parameters:
 # Steps
 ###########################################################
 stages:
+- stage: deploy
+  jobs:
+  - deployment: DeploySomething
+    displayName: deploy something
+    # creates an environment if it doesn't exist
+    environment: 'development'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo something
+  - deployment: DeploySomething
+    displayName: deploy something
+    # creates an environment if it doesn't exist
+    environment: 'sandpit'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo something
 
   - stage: 'GIT_TAG'
     displayName: Create a git tag for this version
     jobs:
-        environment: development
+#         environment: development
       - ${{ each service in parameters.appServices }}:
         - job: SAY_HELLO_${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
           displayName: Say Hello ${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
