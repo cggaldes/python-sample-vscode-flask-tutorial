@@ -59,6 +59,7 @@ parameters:
         deploymentSteps:
         - tag
         approvalEnvName: mcp-sandpit
+        environment: sandpit
 
       - applicationServiceID: mcp-gke-internal-sandpit-green
         workspace: mcp-gke-internal-sandpit-green
@@ -67,6 +68,7 @@ parameters:
         deploymentSteps:
         - tag
         approvalEnvName: mcp-sandpit
+        environment: dev
 
 #################################################
 # Job Definition
