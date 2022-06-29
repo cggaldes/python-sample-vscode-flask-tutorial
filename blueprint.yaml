@@ -16,10 +16,10 @@ stages:
   - stage: 'GIT_TAG'
     displayName: Create a git tag for this version
     jobs:
+      environment: ${{ service.environment }}
       - ${{ each service in parameters.appServices }}:
         - job: SAY_HELLO_${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
           displayName: Say Hello ${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
-          environment: ${{ service.environment }}
 
           #variables:
           #  - releaseVersion: 0.0.1
