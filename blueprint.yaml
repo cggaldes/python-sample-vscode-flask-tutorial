@@ -33,37 +33,37 @@ stages:
           steps:
           - script: echo something
 
-  - stage: 'GIT_TAG'
-    displayName: Create a git tag for this version
-    jobs:
-#         environment: development
-      - ${{ each service in parameters.appServices }}:
-        - job: SAY_HELLO_${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
-          displayName: Say Hello ${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
+#   - stage: 'GIT_TAG'
+#     displayName: Create a git tag for this version
+#     jobs:
+# #         environment: development
+#       - ${{ each service in parameters.appServices }}:
+#         - job: SAY_HELLO_${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
+#           displayName: Say Hello ${{ upper(replace(replace(service.applicationServiceID,' ' ,'_'),'-','_')) }}
 
-          #variables:
-          #  - releaseVersion: 0.0.1
+#           #variables:
+#           #  - releaseVersion: 0.0.1
 
-          steps:
-            - checkout: self
-              persistCredentials: true
+#           steps:
+#             - checkout: self
+#               persistCredentials: true
               
-            - script: echo '$(Build.BuildNumber)'
-              displayName: Output Some build number  
+#             - script: echo '$(Build.BuildNumber)'
+#               displayName: Output Some build number  
 
-            # - script: echo '$(Rev:r)'
-            #   displayName: Rev rrrrrrr
+#             # - script: echo '$(Rev:r)'
+#             #   displayName: Rev rrrrrrr
 
-            - script: |
-                git config --global user.email "cggaldes@gmail.com"
-                git config --global user.name "Christopher Galdes"
-              displayName: setup git
+#             - script: |
+#                 git config --global user.email "cggaldes@gmail.com"
+#                 git config --global user.name "Christopher Galdes"
+#               displayName: setup git
               
-            - script: |
-                echo "Hello There :wave"
-              displayName: smile and wave
+#             - script: |
+#                 echo "Hello There :wave"
+#               displayName: smile and wave
 
-            - script: |
-                git tag ${{ service.releaseVersion }}
-                git push origin ${{ service.releaseVersion }}
-              displayName: git tag for ${{ service.applicationServiceID }}
+#             - script: |
+#                 git tag ${{ service.releaseVersion }}
+#                 git push origin ${{ service.releaseVersion }}
+#               displayName: git tag for ${{ service.applicationServiceID }}
